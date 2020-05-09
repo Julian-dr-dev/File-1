@@ -1,23 +1,22 @@
 # File-1
 Library-video store project.
 
-class Media {
+class Dvd {
   constructor(title) {
     this._title = title;
+    this._releaseDate = releaseDate;
     this._isCheckedOut = false;
-    this._ratings = [];
-
   }
   get title() {
     return this._title;
   }
+  get runTime() {
+    return this._runTime;
+  }
   get isCheckedOut() {
     return this._isCheckedOut;
   }
-  get ratings() {
-    return this._ratings;
-  }
-  set isCheckedOut(value) {
+   isCheckedOut(value) {
     return this._isCheckedOut = value;
   }
   toggleCheckOutStatus() {
@@ -33,25 +32,21 @@ class Media {
   }
 }
 
-class Book extends Media {
-  constructor(author, title, pages) {
+class documentary extends Dvd {
+  constructor(subject, title) {
     super(title);
-    this._author = author;
-    this._pages = pages;
-
+    this._subject = subject;
   }
-  get author() {
-    return this._author;
-  }
-  get pages() {
-    return this._pages;
+  get subject() {
+    return this._subject;
   }
 }
-class Movie extends Media {
-  constructor(director, title, runTime) {
+class Feature extends Dvd {
+  constructor(director, title, runTime, genre) {
     super(title);
     this._director = director;
     this._runTime = runTime;
+    this._genre = genre;
   }
   get director() {
     return this._director;
@@ -59,29 +54,68 @@ class Movie extends Media {
   get runTime() {
     return this._runTime;
   }
+  get genre() {
+    return this._genre;
+  }
 }
 
+class workOutVideo extends Dvd {
+  constructor(host, title, workoutType) {
+    super(title);
+    this._host = host;
+    this._workoutType = workoutType;
+  }
+  get host() {
+    return this._host;
+  }
+  get workoutType() {
+    return this._workoutType;  
+  }
+}
 
-const historyOfEverything = new Book('Bill Bryson','A Short History of Nearly Everything', 544);
+class tvSeriesDvd extends Dvd {
+  constructor(seasonNumber, title, episodeCount) {
+    super(title);
+    this._seasonNumber = seasonNumber;
+    this._episodeCount = episodeCount;
+   }
+   get seasonNumber() {
+    return this._seasonNumber;
+   }
+   get episodeCount() {
+    return this._episodeCount;
+   }
+ }
 
-historyOfEverything.toggleCheckOutStatus();
+const theScheme = new documentary('Sports Scandal', 'The Scheme');
+theScheme.toggleCheckOutStatus();
+console.log(theScheme.isCheckedOut);
 
-console.log(historyOfEverything.isCheckedOut);
+theScheme.addRating(9);
+theScheme.addRating(10);
+theScheme.addRating(8.5);
 
-historyOfEverything.addRating(4);
-historyOfEverything.addRating(5);
-historyOfEverything.addRating(5);
-console.log(historyOfEverything.getAverageRating());
+theScheme.getAverageRating();
 
-const speed = new Movie('Jan de Bont', 'Speed', 116);
 
-speed.toggleCheckOutStatus();
+const Casino = new Feature('Martin Scorcese', 'Casino','178', crime);
+Casino.toggleCheckOutStatus();
+console.log(Casino.isCheckedOut);
 
-console.log(speed.isCheckedOut);
+Casino.addRating(9)
+Casino.addRating(10)
+Casino.addRating(8.5)
 
-speed.addRating(1);
-speed.addRating(1);
-speed.addRating(5);
+Casino.getAverageRating();
 
-console.log(speed.getAverageRating());
+
+const brazilButtLift = new workOutVideo
+brazilButtLift.toggleCheckOutStatus();
+console.log(brazilButtLift.isCheckedOut);
+
+brazilButtLift.addRating(6)
+brazilButtLift.addRating(5)
+brazilButtLift.addRating(9.5)
+
+brazilButtLift.getAverageRating();
 
